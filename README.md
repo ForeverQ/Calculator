@@ -1,6 +1,6 @@
 # Calculator
 
-a demo from Stanford course
+a demo from Stanford course, together with some projects and exercise. 
 
 iTunes U 课程地址：[iTunes U/Developing iOS 8 Apps Swift](https://itunes.apple.com/us/course/developing-ios-8-apps-swift/id961180099)
 

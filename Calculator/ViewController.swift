@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     
     var userIsInTheMiddleOfTypingANumber = false
+    var existDot = false
     
     var brain = CalculatorBrain()  //Model part
     
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         } else {
             display.text = digit
             userIsInTheMiddleOfTypingANumber = true
+            existDot = false
         }
     }
     
@@ -39,6 +41,14 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func appendDot(sender: UIButton) {
+        if !existDot {
+            display.text = display.text! + "."
+            existDot = true
+            userIsInTheMiddleOfTypingANumber = true
+        }
+    }
+    
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
         if let result = brain.pushOperand(displayValue) {
@@ -46,6 +56,13 @@ class ViewController: UIViewController {
         } else {
             displayValue = 0  //displayValue = nil
         }
+    }
+    
+    @IBAction func cleanAll(sender: UIButton) {
+        display.text = "0"
+        userIsInTheMiddleOfTypingANumber = false
+        existDot = false
+        brain.cleanOpStack()
     }
     
     var displayValue: Double {

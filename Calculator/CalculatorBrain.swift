@@ -42,6 +42,8 @@ class CalculatorBrain {
         learnOp(Op.BinaryOperation("+", +))
         learnOp(Op.BinaryOperation("−") { $1 - $0 })
         learnOp(Op.UnaryOperation("√", sqrt))
+        learnOp(Op.UnaryOperation("sin", sin))
+        learnOp(Op.UnaryOperation("cos", cos))
     }
     
     private func evaluate(ops: [Op]) -> (result: Double?, remainingOps: [Op]){
@@ -65,11 +67,11 @@ class CalculatorBrain {
                     }
                 }
             }
-
+            
         }
         return (nil, ops)
     }
-    func evaluate() ->Double? {
+    func evaluate() -> Double? {
         let (result, remainder) = evaluate(opStack)
         print("\(opStack) = \(result) with \(remainder) left over")
         return result
@@ -85,5 +87,11 @@ class CalculatorBrain {
             opStack.append(operation)
         }
         return evaluate()
+    }
+    
+    func cleanOpStack() {
+        if !opStack.isEmpty {
+            opStack.removeAll()
+        }
     }
 }
